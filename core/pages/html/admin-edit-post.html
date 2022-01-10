@@ -1,0 +1,43 @@
+<?php require 'head.html'; ?>
+<body>
+	<?php require 'header.html'; ?>
+	<div class="container">
+		<h3 class="text-center">Редактирование</h3>
+		<div class="d-flex flex-column align-items-center">
+			<?php if($alert) echo '<div class="col-6 alert alert-info text-center" role="alert">' . $alert . '</div>'; ?>
+			<div class="pb-3 col-12 col-md-8">
+				<form method="POST" enctype="multipart/form-data">
+					<div class="mb-3">
+						<label for="title" class="form-label">Заголовок</label>
+						<input type="text" class="form-control" id="title" minlength="10" maxlength="150" name="title" value="<?=$post['title'];?>" required>
+					</div>
+					<div class="mb-3">
+						<label for="content" class="form-label">Текст</label>
+						<textarea rows="10" class="form-control" id="content" name="content" required><?=$post['content'];?></textarea>
+					</div>
+					<div class="mb-3">
+						<label for="title" class="form-label">URL поста</label>
+						<div class="input-group">
+							<span class="input-group-text"><?=SITE_URL?>/post/</span>
+							<input type="text" class="form-control" name="url" placeholder="first-article" value="<?=$post['url'];?>" required>
+						</div>
+					</div>
+					<div class="mb-3">
+						<label class="form-label">Картинка</label>
+						<div class="input-group">
+							<span class="input-group-text"><?=SITE_URL?></span>
+							<input readonly type="text" class="form-control" value="<?=$post['image'];?>">
+						</div>
+					</div>
+					<div class="mb-3">
+						<label for="image" class="form-label">Загрузить новую картинку (jpg, png, webp):</label>
+						<input class="form-control" type="file" id="image" name="image" accept=".png,.jpg,.jpeg,.webp">
+    					<input type="hidden" name="MAX_FILE_SIZE" value="26214400" />
+					</div>
+					<button class="w-100 btn btn-md btn-dark" type="submit">Опубликовать</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

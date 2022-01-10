@@ -1,0 +1,28 @@
+<?php require 'head.html'; ?>
+<body>
+	<?php require 'header.html'; ?>
+	<div class="container">
+		<div class="d-flex flex-column align-items-center">
+			<h3>Все комментарии</h3>
+			<?php foreach ($comments_all as $comment): ?>
+			<div class="my-1 p-3 col-12 col-md-6 border rounded">
+				<div class="d-flex flex-row">
+					<h5 class="me-1"><?=$comment['owner'];?></h5>
+					<p class="text-secondary">— <?=date('d.m.Y',strtotime($comment['date']))?></p>
+					<a href="?delete-comment=<?=$comment['id'];?>" class="ms-auto text-secondary text-decoration-none">Удалить</a>
+				</div>
+				<p class="m-0"><?=$comment['content'];?></p>
+			</div>
+			<?php endforeach ?>
+			<div class="col-12 col-md-6 mb-3 d-flex flex-row justify-content-around">
+				<?php if ($page > 1): ?>
+					<a href="?page=<?=($page-1)?>">« Предыдущая страница</a>
+				<?php endif ?>
+				<?php if ($need_next_page): ?>
+					<a href="?page=<?=($page+1)?>">Следующая страница »</a>
+				<?php endif ?>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

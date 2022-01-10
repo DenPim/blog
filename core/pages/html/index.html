@@ -1,0 +1,36 @@
+<?php require 'head.html'; ?>
+<body>
+	<?php require 'header.html'; ?>
+	<div class="container">
+		<h3 class="mb-2 text-center">Последние посты</h3>
+		<div class="d-flex flex-wrap justify-content-center">
+			<?php foreach ($posts_all as $post): ?>
+			<div class="me-2 my-3 p-4 col-12 col-md-4 border rounded">
+				<div>
+					<?php if ($post['image']): ?>
+						<a href="/post/<?=$post['url']?>">
+							<img class="rounded" src="<?=$post['image']?>" width="100%">
+						</a>
+					<?php endif ?>
+					<h4 class="my-3">
+						<a class="text-decoration-none text-dark" href="/post/<?=$post['url']?>">
+							<?=$post['title']?>
+						</a>
+					</h4>
+					<p><?=mb_substr($post['content'], 0, 300)?>...</p>
+					<a class="text-decoration-none" href="/post/<?=$post['url']?>">Читать полностью</a>
+				</div>
+			</div>
+			<?php endforeach ?>
+			<div class="col-12 col-md-6 mb-3 d-flex flex-row justify-content-around">
+				<?php if ($page > 1): ?>
+					<a href="?page=<?=($page-1)?>">« Предыдущая страница</a>
+				<?php endif ?>
+				<?php if ($need_next_page): ?>
+					<a href="?page=<?=($page+1)?>">Следующая страница »</a>
+				<?php endif ?>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
